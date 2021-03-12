@@ -58,13 +58,13 @@ exports.signin = (req,res) => {
 	    });
 	}
 	  //generate a token and sent to client
-	  const token = jwt.sign({ _id: user._id}, process.env.JWT_SECRET, {expireIn: 'Id'});    	       
+	  const token = jwt.sign({ _id: user._id}, process.env.JWT_SECRET, {expiresIn: '1d'});    	       
 	  
-	  res.cookie('token', token, {expiresIn: 'Id'})
+	  res.cookie('token', token, {expiresIn: '1d'})
 	  const {_id, username, name, email, role } = user;
 	  return res.json({
 	      token,
-	      user
+	      user: {_id, username, name, email, role }
 	  });
      });
 };
