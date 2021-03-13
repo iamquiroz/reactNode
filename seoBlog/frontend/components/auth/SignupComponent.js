@@ -21,10 +21,6 @@ const SignupComponent = () => {
       e.preventDefault();
     setValues({...values, loading: true, error: false}) 
     const user = {  name, email, password}
-
-
-
-
      signup(user).then(data => {
             if (data.error) {
                 setValues({ ...values, error: data.error, loading: false });
@@ -41,14 +37,6 @@ const SignupComponent = () => {
                 });
             }
         })
-
-
-
-
-
-
-
-
 
   };
   const handleChange = name => e => {
