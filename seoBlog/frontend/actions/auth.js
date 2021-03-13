@@ -66,7 +66,7 @@ export const removeCookie = (key) => {
 // get cookie
 export const getCookie = key => {
     if(process.browser){
-	cookie.get(key);
+      return	cookie.get(key);
     }
 };
 // localstorage
