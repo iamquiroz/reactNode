@@ -5,11 +5,11 @@ const expressJwt = require('express-jwt')
 
 exports.signup = (req,res) => {
 
-    User.findOne({email: req.body.email}).exec((err,user) => {
+    User.findOne({email: req.body.email}).exec((err, user) => {
 	  if(user){
-	    return res.status(400)({
+	    return res.status(400).json({
 		  error: 'Email is taken' 
-	    })
+	    });
 	  }
 
 
@@ -41,7 +41,7 @@ exports.signup = (req,res) => {
 
 
 
-exports.signin = (req,res) => {
+exports.signin = (req, res) => {
     const { email, password } = req.body 
 
   // check if user exist
