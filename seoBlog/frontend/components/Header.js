@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Router  from 'next/router';
+import Link from 'next/link';
 import { APP_NAME } from '../config';
 import { signout, isAuth } from '../actions/auth';
 import {
@@ -41,17 +42,31 @@ const Header = () => {
 		    </React.Fragment>
 		  )}
 
-		  {isAuth() &&(
-		      <NavItem>
-			 <NavLink 
-			    style={{ cursor: 'pointer' }}
-			    onClick={ () => signout( () => Router.replace(`/signin`))}
-			  > 
-			   Signout
-			  </NavLink>
-		      </NavItem>
+		  {isAuth() && isAuth().role === 0 && (
+		    <NavItem>
+			<Link href="/user">
+			  <NavLink> {`${isAuth().name}'s Dashboard`}</NavLink>
+			</Link>
+		    </NavItem>
 		  )}
 
+		  {isAuth() && isAuth().role ===1 && (
+		    <NavItem>
+			<Link href="/admin">
+			  <NavLink> {`${isAuth().name}'s Dashboard`}</NavLink>
+			</Link>
+		    </NavItem>
+
+		  )}
+
+		  {isAuth() && (
+		      <NavItem>
+			<NavLink style={{ cursor: 'pointer' }} onClick={() => signout(() => Router.replace(`/signin`))}>
+			    Signout
+			</NavLink>
+		      </NavItem>
+
+		  )}
 
                 </Nav>
               </Collapse>
