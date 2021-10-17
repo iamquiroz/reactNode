@@ -13,6 +13,8 @@ exports.signup = (req,res) => {
 	    });
 	  }
 
+	  
+
 
 	  const { name, email, password } = req.body;
 	  let username = shortId.generate();
